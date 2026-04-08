@@ -1,0 +1,11 @@
+tem_penas(pinguim).
+poe_ovos(pinguim).
+
+tem_penas(galinha).
+poe_ovos(galinha).
+
+tem_pelos(cachorro).
+
+ave(X) :-
+    tem_penas(X),
+    poe_ovos(X).
