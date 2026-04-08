@@ -1,0 +1,6 @@
+venceu(fares, luiz).
+venceu(luiz, zamba).
+venceu(fares, zamba).
+
+invicto(Jogador) :-
+    \+ venceu(_, Jogador).
