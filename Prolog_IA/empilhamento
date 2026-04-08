@@ -1,0 +1,16 @@
+sobre(a, b).
+sobre(b, c).
+sobre(d, e).
+
+no_chao(c).
+no_chao(e).
+
+abaixo(X, Y) :-
+    sobre(X, Y).
+
+abaixo(X, Y) :-
+    sobre(X, Z),
+    abaixo(Z, Y).
+
+bloco_livre(X) :-
+    \+ sobre(_, X).
