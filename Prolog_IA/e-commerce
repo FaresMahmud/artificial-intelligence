@@ -1,0 +1,11 @@
+cliente(fares, 100).
+cliente(zamba, 50).
+
+produto(celular, 80).
+produto(tv, 200).
+produto(fone, 30).
+
+pode_comprar(Nome, Item) :-
+    cliente(Nome, Saldo),
+    produto(Item, Preco),
+    Saldo >= Preco.
