@@ -6,10 +6,10 @@ pre_requisito(logica, programacao).
 pre_requisito(programacao, banco_de_dados).
 
 
-nota(joao, logica, 8).
-nota(joao, programacao, 6).
-nota(maria, logica, 7).
-nota(maria, programacao, 9).
+nota(fares, logica, 8).
+nota(zamba, programacao, 6).
+nota(pedro, logica, 7).
+nota(felipe, programacao, 9).
 
 
 aprovado(Aluno, Disciplina) :-
