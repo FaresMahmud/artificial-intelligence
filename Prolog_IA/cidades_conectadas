@@ -1,0 +1,9 @@
+estrada(a, b).
+estrada(b, c).
+estrada(c, d).
+
+pode_viajar(De, Para) :-
+    estrada(De, Para).
+
+pode_viajar(De, Para) :-
+    estrada(Para, De).
