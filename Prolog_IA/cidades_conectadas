@@ -1,6 +1,6 @@
-estrada(a, b).
-estrada(b, c).
-estrada(c, d).
+estrada(Rosul, SantaMaria).
+estrada(SantaMaria, Itaara).
+estrada(Itaara, Agudo).
 
 pode_viajar(De, Para) :-
     estrada(De, Para).
