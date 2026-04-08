@@ -1,0 +1,11 @@
+esta_em(livro, sala).
+esta_em(chave, cozinha).
+esta_em(celular, quarto).
+
+comodo_em(sala, casa1).
+comodo_em(cozinha, casa1).
+comodo_em(quarto, casa1).
+
+localizacao_geral(Objeto, Casa) :-
+    esta_em(Objeto, Comodo),
+    comodo_em(Comodo, Casa).
