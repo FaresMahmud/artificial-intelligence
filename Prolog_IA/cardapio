@@ -1,0 +1,16 @@
+ingrediente(salada, alface).
+ingrediente(salada, tomate).
+ingrediente(salada, cenoura).
+
+ingrediente(hamburguer, carne).
+ingrediente(hamburguer, queijo).
+ingrediente(hamburguer, pao).
+
+vegano(alface).
+vegano(tomate).
+vegano(cenoura).
+vegano(pao).
+
+prato_vegano(Prato) :-
+    ingrediente(Prato, _), 
+    \+ (ingrediente(Prato, Item), \+ vegano(Item)).
