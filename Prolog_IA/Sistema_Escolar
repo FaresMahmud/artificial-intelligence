@@ -1,19 +1,17 @@
-% disciplinas
 disciplina(logica).
 disciplina(programacao).
 disciplina(banco_de_dados).
 
-% pre requisitos
 pre_requisito(logica, programacao).
 pre_requisito(programacao, banco_de_dados).
 
-% notas
+
 nota(joao, logica, 8).
 nota(joao, programacao, 6).
 nota(maria, logica, 7).
 nota(maria, programacao, 9).
 
-% aprovado e reprovado
+
 aprovado(Aluno, Disciplina) :-
     nota(Aluno, Disciplina, Nota),
     Nota >= 7.
@@ -22,14 +20,12 @@ reprovado(Aluno, Disciplina) :-
     nota(Aluno, Disciplina, Nota),
     Nota < 7.
 
-% pode cursar
 
-% caso 1: disciplina sem pre requisito
 pode_cursar(_, Disciplina) :-
     disciplina(Disciplina),
     \+ pre_requisito(_, Disciplina).
 
-% caso 2: tem pre requisito e foi aprovado
+
 pode_cursar(Aluno, Disciplina) :-
     pre_requisito(Anterior, Disciplina),
     aprovado(Aluno, Anterior).
