@@ -1,0 +1,11 @@
+filme(matrix, acao).
+filme(titanic, romance).
+filme(vingadores, acao).
+filme(diario_de_uma_paixao, romance).
+
+usuario_gosta(joao, acao).
+usuario_gosta(maria, romance).
+
+recomendar(Filme, Usuario) :-
+    filme(Filme, Genero),
+    usuario_gosta(Usuario, Genero).
