@@ -6,6 +6,41 @@ Estudos e implementações sobre Inteligência Artificial, com foco em Algoritmo
 
 ## 📚 Conteúdo
 
+### ag_palavra.py ⭐ **NOVO**
+**Algoritmo Genético Interativo - Procurador de Palavras**
+
+Versão interativa e gamificada do AG que encontra palavras escolhidas pelo usuário. O programa interage com o usuário perguntando:
+- 🎯 Qual palavra o AG deve encontrar?
+- 👥 Tamanho da população
+- 🔄 Taxa de crossover (0-1)
+- 🧬 Taxa de mutação (0-1)
+- ⏳ Máximo de gerações
+
+**Como executar:**
+```bash
+python ag_palavra.py
+```
+
+**Exemplo de uso:**
+```
+🎯 Digite a palavra que o AG deve encontrar: HELLO WORLD
+→ Tamanho da população: 30
+→ Taxa de Crossover: 0.8
+→ Taxa de Mutação: 0.15
+→ Máximo de gerações: 500
+```
+
+**Características:**
+- ✅ Interface interativa com validação de entrada
+- ✅ Representação por string (cromossomos são palavras)
+- ✅ Fitness baseado em caracteres corretos na posição correta
+- ✅ Suporta espaços e letras maiúsculas
+- ✅ Mostra progresso a cada geração
+- ✅ Para quando encontra a solução exata
+- ✅ Exibe estatísticas (melhor, média, aptidão relativa)
+
+---
+
 ### aula.py
 **Algoritmo Genético - Implementação Didática** (Prof. Alexandre Zamberlan - Técnicas de IA)
 
