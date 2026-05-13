@@ -36,29 +36,23 @@ def obter_parametros():
         except ValueError:
             print("Digite um número inteiro")
     
+    # Taxa de crossover aleatória
+    taxa_crossover = random.uniform(0.7, 0.95)
+    
     while True:
         try:
-            taxa_crossover = float(input("Taxa de crossover 0-1 (ex: 0.8): "))
-            if not (0 <= taxa_crossover <= 1):
-                print("Digite um valor entre 0 e 1")
+            taxa_mutacao = float(input("Taxa de mutação em % (ex: 5): "))
+            if not (0 <= taxa_mutacao <= 100):
+                print("Digite um valor entre 0 e 100")
                 continue
+            taxa_mutacao = taxa_mutacao / 100  # Converter pra decimal
             break
         except ValueError:
             print("Digite um número válido")
     
     while True:
         try:
-            taxa_mutacao = float(input("Taxa de mutação 0-1 (ex: 0.1): "))
-            if not (0 <= taxa_mutacao <= 1):
-                print("Digite um valor entre 0 e 1")
-                continue
-            break
-        except ValueError:
-            print("Digite um número válido")
-    
-    while True:
-        try:
-            num_geracoes = int(input("Máximo de gerações (ex: 1000): "))
+            num_geracoes = int(input("Máximo de gerações (ex: 50000): "))
             if num_geracoes < 1:
                 print("Mínimo 1 geração")
                 continue
