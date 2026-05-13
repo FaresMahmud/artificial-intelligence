@@ -8,6 +8,8 @@ Baseado em material do Prof. Alexandre Zamberlan - Técnicas de IA
 
 import random
 import string
+from datetime import datetime
+import os
 
 def obter_parametros():
     """Coleta a palavra alvo e parâmetros do usuário."""
@@ -135,6 +137,28 @@ def pegar_elite(populacao, fitness_lista):
 def executar_ag(params):
     """Executa o algoritmo genético."""
     
+    # Criar arquivo temporário com timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    nome_arquivo = f"AG_RELATORIO_{params['palavra_alvo']}_{timestamp}.txt"
+    caminho_arquivo = os.path.join(os.path.expanduser("~"), "Desktop", nome_arquivo)
+    
+    # Se Desktop não existe, salvar na pasta do script
+    if not os.path.exists(os.path.dirname(caminho_arquivo)):
+        caminho_arquivo = os.path.join(os.getcwd(), nome_arquivo)
+    
+    # Escrever cabeçalho no arquivo
+    with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+        f.write("=" * 60 + "\n")
+        f.write("RELATORIO DE EXECUÇÃO - ALGORITMO GENÉTICO\n")
+        f.write("=" * 60 + "\n\n")
+        f.write(f"Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n")
+        f.write(f"Palavra alvo: {params['palavra_alvo']}\n")
+        f.write(f"População: {params['tam_populacao']}\n")
+        f.write(f"Crossover: {params['taxa_crossover']*100:.1f}%\n")
+        f.write(f"Mutação: {params['taxa_mutacao']*100:.1f}%\n")
+        f.write(f"Max gerações: {params['num_geracoes']}\n")
+        f.write("\n" + "=" * 60 + "\n\n")
+    
     print("\n" + "=" * 50)
     print("Executando AG...")
     print("=" * 50)
@@ -162,7 +186,12 @@ def executar_ag(params):
             melhor_fitness_global = melhor_fitness
             melhor_global = melhor_cromossomo
         
-        # Mostrar progresso (a cada 10 gerações ou quando achar solução)
+        # Escrever geração no arquivo
+        with open(caminho_arquivo, 'a', encoding='utf-8') as f:
+            f.write(f"Gen {geracao:5d} | Melhor: {melhor_fitness:2d}/{params['tam_cromossomo']} | "
+                    f"Media: {media_fitness:5.2f} | {melhor_cromossomo}\n")
+        
+        # Mostrar progresso no console (a cada 10% das gerações ou quando achar solução)
         if geracao == 1 or geracao % max(1, params['num_geracoes'] // 20) == 0 or melhor_fitness == params['tam_cromossomo']:
             print(f"Gen {geracao:4d} | Melhor: {melhor_fitness:2d}/{params['tam_cromossomo']} | "
                   f"Media: {media_fitness:.1f} | {melhor_cromossomo}")
@@ -172,6 +201,14 @@ def executar_ag(params):
             print(f"\nSolucao encontrada na geracao {geracao}!")
             print(f"Palavra: {melhor_cromossomo}")
             print(f"Fitness: {melhor_fitness}/{params['tam_cromossomo']} (100%)")
+            
+            # Escrever resultado final no arquivo
+            with open(caminho_arquivo, 'a', encoding='utf-8') as f:
+                f.write("\n" + "=" * 60 + "\n")
+                f.write(f"SOLUÇÃO ENCONTRADA NA GERAÇÃO {geracao}\n")
+                f.write("=" * 60 + "\n")
+                f.write(f"Palavra: {melhor_cromossomo}\n")
+                f.write(f"Fitness: {melhor_fitness}/{params['tam_cromossomo']} (100%)\n")
             break
         
         elite = pegar_elite(populacao, fitness_lista)
@@ -197,8 +234,19 @@ def executar_ag(params):
         print(f"Melhor encontrado: {melhor_global}")
         print(f"Fitness: {melhor_fitness_global}/{params['tam_cromossomo']} "
               f"({melhor_fitness_global/params['tam_cromossomo']*100:.1f}%)")
+        
+        # Escrever resultado final no arquivo
+        with open(caminho_arquivo, 'a', encoding='utf-8') as f:
+            f.write("\n" + "=" * 60 + "\n")
+            f.write("MÁXIMO DE GERAÇÕES ATINGIDO\n")
+            f.write("=" * 60 + "\n")
+            f.write(f"Melhor encontrado: {melhor_global}\n")
+            f.write(f"Fitness: {melhor_fitness_global}/{params['tam_cromossomo']} "
+                    f"({melhor_fitness_global/params['tam_cromossomo']*100:.1f}%)\n")
     
     print("\n" + "=" * 50)
+    print(f"Relatório salvo em: {caminho_arquivo}")
+    print("=" * 50)
 
 
 if __name__ == "__main__":
